@@ -18,8 +18,8 @@ using System.Security;
 
 [assembly: AssemblyCompany("10gen Inc.")]
 [assembly: AssemblyCopyright("Copyright © 2010-2013 10gen Inc.")]
-[assembly: AssemblyVersion("0.0.0.0")]
+[assembly: AssemblyVersion("1.8.3.01")]
 [assembly: AssemblyInformationalVersion("unofficial")]
-[assembly: AssemblyFileVersion("0.0.0.0")]
-[assembly: AssemblyConfiguration("Debug")]
+[assembly: AssemblyFileVersion("1.8.3.01")]
+[assembly: AssemblyConfiguration("Release")]
 [assembly: AllowPartiallyTrustedCallers()]

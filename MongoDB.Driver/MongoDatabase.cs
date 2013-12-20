@@ -201,8 +201,9 @@ namespace MongoDB.Driver
         /// </summary>
         public virtual MongoGridFS GridFS
         {
-            get { return GetGridFS(new MongoGridFSSettings()); }
-        }
+            get { return null; //return GetGridFS(new MongoGridFSSettings()); 
+            }
+            }
 
         /// <summary>
         /// Gets the name of this database.
@@ -264,14 +265,14 @@ namespace MongoDB.Driver
         {
             using (RequestStart(ReadPreference.Primary))
             {
-                if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
-                {
-                    AddUserWithUserManagementCommands(user);
-                }
-                else
-                {
+                //if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
+                //{
+                //    AddUserWithUserManagementCommands(user);
+                //}
+                //else
+                //{
                     AddUserWithInsert(user);
-                }
+                //}
             }
         }
 
@@ -475,10 +476,10 @@ namespace MongoDB.Driver
         {
             using (RequestStart(ReadPreference.Primary))
             {
-                if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
-                {
-                    return FindAllUsersWithUserManagementCommands();
-                }
+                //if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
+                //{
+                //    return FindAllUsersWithUserManagementCommands();
+                //}
 
                 return FindAllUsersWithQuery();
             }
@@ -494,10 +495,10 @@ namespace MongoDB.Driver
         {
             using (RequestStart(ReadPreference.Primary))
             {
-                if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
-                {
-                    return FindUserWithUserManagementCommands(username);
-                }
+                //if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
+                //{
+                //    return FindUserWithUserManagementCommands(username);
+                //}
 
                 return FindUserWithQuery(username);
             }
@@ -683,18 +684,18 @@ namespace MongoDB.Driver
             return collection.FindOne();
         }
 
-        /// <summary>
-        /// Gets an instance of MongoGridFS for this database using custom GridFS settings.
-        /// </summary>
-        /// <param name="gridFSSettings">The GridFS settings to use.</param>
-        /// <returns>An instance of MongoGridFS.</returns>
-        public virtual MongoGridFS GetGridFS(MongoGridFSSettings gridFSSettings)
-        {
-            var clonedSettings = gridFSSettings.Clone();
-            clonedSettings.ApplyDefaultValues(_settings);
-            clonedSettings.Freeze();
-            return new MongoGridFS(_server, _name, clonedSettings);
-        }
+        ///// <summary>
+        ///// Gets an instance of MongoGridFS for this database using custom GridFS settings.
+        ///// </summary>
+        ///// <param name="gridFSSettings">The GridFS settings to use.</param>
+        ///// <returns>An instance of MongoGridFS.</returns>
+        //public virtual MongoGridFS GetGridFS(MongoGridFSSettings gridFSSettings)
+        //{
+        //    var clonedSettings = gridFSSettings.Clone();
+        //    clonedSettings.ApplyDefaultValues(_settings);
+        //    clonedSettings.Freeze();
+        //    return new MongoGridFS(_server, _name, clonedSettings);
+        //}
 
         /// <summary>
         /// Gets the last error (if any) that occurred on this connection. You MUST be within a RequestStart to call this method.
@@ -702,10 +703,10 @@ namespace MongoDB.Driver
         /// <returns>The last error (<see cref=" GetLastErrorResult"/>)</returns>
         public virtual GetLastErrorResult GetLastError()
         {
-            if (Server.RequestNestingLevel == 0)
-            {
-                throw new InvalidOperationException("GetLastError can only be called if RequestStart has been called first.");
-            }
+            //if (Server.RequestNestingLevel == 0)
+            //{
+            //    throw new InvalidOperationException("GetLastError can only be called if RequestStart has been called first.");
+            //}
             return RunCommandAs<GetLastErrorResult>("getlasterror"); // use all lowercase for backward compatibility
         }
 
@@ -810,15 +811,15 @@ namespace MongoDB.Driver
         {
             using (RequestStart(ReadPreference.Primary))
             {
-                if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
-                {
-                    RunCommand(new CommandDocument("dropUser", username));
-                }
-                else
-                {
+                //if (_server.RequestConnection.ServerInstance.Supports(FeatureId.UserManagementCommands))
+                //{
+                //    RunCommand(new CommandDocument("dropUser", username));
+                //}
+                //else
+                //{
                     var users = GetCollection("system.users");
                     users.Remove(Query.EQ("user", username));
-                }
+                //}
             }
         }
 
@@ -872,7 +873,7 @@ namespace MongoDB.Driver
         /// </summary>
         public virtual void RequestDone()
         {
-            _server.RequestDone();
+           // _server.RequestDone();
         }
 
         /// <summary>
@@ -896,7 +897,8 @@ namespace MongoDB.Driver
         [Obsolete("Use the overload of RequestStart that has a ReadPreference parameter instead.")]
         public virtual IDisposable RequestStart(bool slaveOk)
         {
-            return _server.RequestStart(this, ReadPreference.FromSlaveOk(slaveOk));
+           // return _server.RequestStart(this, ReadPreference.FromSlaveOk(slaveOk));
+            return null;
         }
 
         /// <summary>
@@ -908,7 +910,8 @@ namespace MongoDB.Driver
         /// <returns>A helper object that implements IDisposable and calls <see cref="RequestDone"/> from the Dispose method.</returns>
         public virtual IDisposable RequestStart(ReadPreference readPreference)
         {
-            return _server.RequestStart(this, readPreference);
+           // return _server.RequestStart(this, readPreference);
+            return null;
         }
 
         // TODO: mongo shell has ResetError at the database level
