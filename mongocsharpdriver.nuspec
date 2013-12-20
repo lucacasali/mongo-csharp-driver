@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>mongocsharpdriver</id>
+    <id>mw-mongocsharpdriver</id>
     <version>0.0.0</version>
-    <title>Official MongoDB C# driver</title>
-    <authors>10gen, Inc.</authors>
-    <owners>Sridhar Nanjundeswaran, Robert Stam, Craig Wilson</owners>
+    <title>Un-official MongoDB C# driver</title>
+    <authors>MyWellness</authors>
+    <owners>MyWellness</owners>
     <iconUrl>http://jobs.mongodb.org/files/logos/889002/889002.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Official 10gen supported C# driver for MongoDB</description>
-    <projectUrl>http://www.mongodb.org/display/DOCS/CSharp+Language+Center</projectUrl>
+    <description>Custom C# driver for MongoDB</description>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <tags>mongodb mongo nosql</tags>
     <language>en-US</language>
